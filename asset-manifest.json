@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Cadastro/static/css/main.59513273.css",
+    "main.js": "/Cadastro/static/js/main.fa41388d.js",
+    "static/js/787.8294276a.chunk.js": "/Cadastro/static/js/787.8294276a.chunk.js",
+    "index.html": "/Cadastro/index.html",
+    "main.59513273.css.map": "/Cadastro/static/css/main.59513273.css.map",
+    "main.fa41388d.js.map": "/Cadastro/static/js/main.fa41388d.js.map",
+    "787.8294276a.chunk.js.map": "/Cadastro/static/js/787.8294276a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.59513273.css",
+    "static/js/main.fa41388d.js"
+  ]
+}
