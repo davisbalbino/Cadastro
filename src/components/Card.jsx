@@ -71,7 +71,9 @@ export default props =>{
         }
         else if(!isValidEmail(inputValueEmail)){
           toast("E-mail inválido");
-
+        }
+        else if(!(inputValueSenha===inputValueSenhaC)){
+          toast("Senhas não são iguais");
         }
         
         else{
