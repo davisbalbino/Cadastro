@@ -16,6 +16,7 @@ import { BiSolidLock } from "react-icons/bi";
 
 export default props =>{
 
+    
     //regex
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     function isValidEmail(email){
@@ -75,6 +76,7 @@ export default props =>{
         
         else{
           toast("Usuário cadastrado com sucesso");
+          const pessoa = new Person(inputValueNome,inputValueSobrenome,inputValueEmail,inputValueSenha);
           setInputValueNome('');
           setInputValueSobrenome('');
           setInputValueEmail('');
