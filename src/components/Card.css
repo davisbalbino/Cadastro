@@ -1,12 +1,23 @@
 .Card{
     width: 300px;
     border-radius: 10px;
-    border: 3px solid white;
+    border: 3px ;
     padding: 10px;
-    background: #4da8e100;
+    background-color: transparent;
+    backdrop-filter: blur(50px);
+    box-shadow: 0px 0px 5px #ffffff;
     color: #4d4747;
     font-family:sans-serifc;
 }
+
+.icons{
+    display: flex;
+    border-bottom:solid 2px #4d4747;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
 .texto{
     margin-bottom: 3px;
     font-weight: bold;
@@ -21,11 +32,24 @@
 .entrada{
     justify-content: left;
     width: 95%;
-    border-radius: 5px;
-    background-color: #ffffff;
-    border-color: #ffffff;
+    background-color:transparent;
     height: 20px;
-    box-shadow: inset 2px 2px 2px #ffffff;
+    border: none;
+}
+.entrada:focus{
+    outline: none;    
+
+}
+
+.div-check{
+    display: flex;
+}
+
+.input-img{
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 12px;
+    
 }
 
 .div-botao{
@@ -48,9 +72,4 @@
 
 .imagem:hover{
     cursor: pointer;
-}
-
-.check{
-    display: flex;
-    
 }
