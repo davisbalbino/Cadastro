@@ -17,6 +17,7 @@ import { BiSolidLock } from "react-icons/bi";
 export default props =>{
 
     
+
     //regex
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     function isValidEmail(email){
@@ -29,6 +30,9 @@ export default props =>{
     const [inputValueEmail, setInputValueEmail] = useState('');
     const [inputValueSenha, setInputValueSenha] = useState('');
     const [inputValueSenhaC, setInputValueSenhaC] = useState('');
+
+    //solicita dados 
+ 
 
     //handles dos inputs, para escrevê-los
     const handleInputChangeNome = (event) => {
@@ -50,6 +54,8 @@ export default props =>{
       const handleInputChangeSenhaC = (event) => {
         setInputValueSenhaC(event.target.value);
       };
+
+
 
     //Quando apertar o botão, teste se todas as informações estão coerentes, salva e cria uma pessoa. 
       const handleInputChangeBotao = (event) => {
@@ -77,8 +83,24 @@ export default props =>{
         }
         
         else{
-          toast("Usuário cadastrado com sucesso");
+
+          
           const pessoa = new Person(inputValueNome,inputValueSobrenome,inputValueEmail,inputValueSenha);
+          const jsonData = JSON.stringify(pessoa)
+          console.log(pessoa)
+
+          fetch('http://localhost:5000/cadastro', {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: jsonData,
+            })
+            .then( (resposta) => resposta.json())
+            .then( ( json ) => console.log(json) )
+            .catch( ( error ) => console.error(error) )
+
           setInputValueNome('');
           setInputValueSobrenome('');
           setInputValueEmail('');
