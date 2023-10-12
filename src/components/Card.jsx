@@ -98,7 +98,7 @@ export default props =>{
               body: jsonData,
             })
             .then( (resposta) => resposta.json())
-            .then( ( json ) => console.log(json) )
+            .then( ( json ) => toast(json['mensagem']) )
             .catch( ( error ) => console.error(error) )
 
           setInputValueNome('');
@@ -147,7 +147,7 @@ export default props =>{
                 <p className="texto">Senha (confirmação):</p>
                 <div className="icons">
                   <BiSolidLock></BiSolidLock>
-                  <input value={inputValueSenhaC} onChange={handleInputChangeSenhaC} type="password" placeholder="Digite sua senha: "  className="entrada"></input>
+                  <input value={inputValueSenhaC} onChange={handleInputChangeSenhaC} type="password" placeholder="Digite sua senha (confirmação):"  className="entrada"></input>
                 </div>
 
                 <input type="file" className="input-img"></input>
