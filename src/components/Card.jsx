@@ -14,8 +14,18 @@ import { BiSolidUser } from "react-icons/bi";
 import { BiLock } from "react-icons/bi";
 import { BiSolidLock } from "react-icons/bi";
 
+
+
 export default props =>{
 
+    //abre conexão com banco de dados
+   const neo4j = require('neo4j-driver');
+
+    const uri = 'bolt://54.85.154.12:7687'; // Substitua pela URL do seu banco de dados Neo4j.
+    const user = 'neo4j';
+    const password = 'wrecks-scab-armors';
+
+   
     
 
     //regex
@@ -83,23 +93,41 @@ export default props =>{
         }
         
         else{
-
-          
+          const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
+          const session = driver.session();
           const pessoa = new Person(inputValueNome,inputValueSobrenome,inputValueEmail,inputValueSenha);
-          const jsonData = JSON.stringify(pessoa)
+          const nome = pessoa.nome
+          const sobrenome = pessoa.sobrenome
+          const email = pessoa.email
+          const senha = pessoa.senha
           console.log(pessoa)
+          const query =  `
+          CREATE (u:Usuario {
+            nome: $nome,
+            sobrenome: $sobrenome,
+            email: $email,
+            senha: $senha
+          })
+          RETURN u
+        `;
 
-          fetch('http://localhost:5000/cadastro', {
-              method: 'POST',
-              headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body: jsonData,
-            })
-            .then( (resposta) => resposta.json())
-            .then( ( json ) => toast(json['mensagem']) )
-            .catch( ( error ) => console.error(error) )
+
+        
+           session
+              .run(query, { nome, sobrenome, email, senha })
+              .then((result) => {
+                toast("Usuário cadastro com sucesso")
+                console.log('Usuário criado:', result.records[0].get('u').properties);
+                
+              })
+              .catch((error) => {
+                console.error('Erro ao criar o usuário:', error);
+                toast("Erro ao cadastrar o usuário:", error)
+              })
+              .finally(() => {
+                session.close();
+                driver.close();
+              });
 
           setInputValueNome('');
           setInputValueSobrenome('');
