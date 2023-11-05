@@ -21,9 +21,9 @@ export default props =>{
     //abre conexão com banco de dados
    const neo4j = require('neo4j-driver');
 
-    const uri = 'bolt://54.85.154.12:7687'; // Substitua pela URL do seu banco de dados Neo4j.
+    const uri = 'bolt://34.200.233.22:7687'; 
     const user = 'neo4j';
-    const password = 'wrecks-scab-armors';
+    const password = 'stoppered-loops-perforations';
 
    
     
@@ -101,28 +101,20 @@ export default props =>{
           const email = pessoa.email
           const senha = pessoa.senha
           console.log(pessoa)
-          const query =  `
-          CREATE (u:Usuario {
-            nome: $nome,
-            sobrenome: $sobrenome,
-            email: $email,
-            senha: $senha
-          })
-          RETURN u
-        `;
+          const query =  "Create (n:Usuario {nome: $nome, sobrenome: $sobrenome, email: $email, senha: $senha})";
 
 
         
            session
               .run(query, { nome, sobrenome, email, senha })
               .then((result) => {
-                toast("Usuário cadastro com sucesso")
-                console.log('Usuário criado:', result.records[0].get('u').properties);
+                toast("Usuário cadastro com sucesso =D")
+                console.log('Usuário criado');
                 
               })
               .catch((error) => {
                 console.error('Erro ao criar o usuário:', error);
-                toast("Erro ao cadastrar o usuário:", error)
+                toast("Erro ao cadastrar o usuário =C", error)
               })
               .finally(() => {
                 session.close();
